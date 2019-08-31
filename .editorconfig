@@ -1,0 +1,18 @@
+# EditorConfig is awesome: http://EditorConfig.org
+
+# Đây là file thiết lập gốc
+root = true
+
+# Newline theo chuẩn Unix và luôn có dòng mới ở cuối file
+[*]
+end_of_line = crlf
+insert_final_newline = true
+
+indent_style = space
+indent_size = 4
+chatset = utf-8
+trim_trailing_whitespace = false
+max_line_length = 80
+
+[{package.json,.travis.yml}]
+indent_size = 2
