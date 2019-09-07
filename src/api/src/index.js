@@ -5,7 +5,7 @@ const app = express();
 
 app.post('/api/auth', (req, res) => {
     res.status(400).json({
-        error: { global: "Invalid credentials" }
+        errors: { global: "Invalid credentials" }
     });
 });
 
