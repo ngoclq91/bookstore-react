@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Button} from "semantic-ui-react";
 import Validator from 'validator';
+import { Form, Button} from "semantic-ui-react";
 import InlineError from '../messages/InlineError';
 
 /**

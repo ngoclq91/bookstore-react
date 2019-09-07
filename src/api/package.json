@@ -1,0 +1,22 @@
+{
+  "name": "bookstore-api",
+  "version": "1.0.0",
+  "description": "api",
+  "main": "../index.js",
+  "repository": "git@github.com:ngoclq91/bookstore-react.git",
+  "author": "ngoclq91<ngocsonqs@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon --exec babel-node -- src/index.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.0",
+    "@babel/node": "^7.6.1",
+    "@babel/preset-env": "^7.6.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "nodemon": "^1.19.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
