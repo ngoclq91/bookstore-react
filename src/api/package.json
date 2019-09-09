@@ -7,7 +7,7 @@
   "author": "ngoclq91<ngocsonqs@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --exec babel-node -- src/index.js"
+    "start": "nodemon --exec babel-node -- ./src/index.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
@@ -26,6 +26,8 @@
     "prettier": "^1.18.2"
   },
   "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "mongoose": "^5.6.13"
   }
