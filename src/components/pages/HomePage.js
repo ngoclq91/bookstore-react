@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
+import * as actions from '../../actions/auth';
 
 /**
  * HomePage Component
@@ -12,15 +13,16 @@ import { connect } from 'react-redux';
 /**
  * Define HomePage Component
  * 
- * @param isAuthenticated : ログイン済みフラグ
+ * @param isAuthenticated ログイン済みフラグ
+ * @param logout ログアウト
  * @returns {*}
  * @constructor
  */
-const HomePage = ({ isAuthenticated }) => (
+const HomePage = ({ isAuthenticated, logout }) => (
     <div>
         <h1>HomePage</h1>
         {isAuthenticated 
-            ? <button>Logout</button> 
+            ? <button onClick={ () => logout() }>Logout</button> 
             : <Link to="/login">Login</Link>}
     </div>
 );
@@ -31,7 +33,8 @@ const HomePage = ({ isAuthenticated }) => (
  * @type {{isAuthenticated: shim}}
  */
 HomePage.propTypes = {
-    isAuthenticated: PropTypes.bool.isRequired
+    isAuthenticated: PropTypes.bool.isRequired,
+    logout: PropTypes.func.isRequired
 };
 
 /**
@@ -46,4 +49,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps)(HomePage);
+export default connect(mapStateToProps, { logout: actions.logout })(HomePage);
