@@ -8,9 +8,9 @@ import api from '../api';
  */
 
 /**
- * Action user đã login thành công
+ * Action Logged_in (Login Success)
  * 
- * @param user
+ * @param user : Login Info
  * @returns {{type: string, user: *}}
  */
 export const userLoggedIn = user => ({
@@ -26,6 +26,9 @@ export const userLoggedIn = user => ({
  * @returns {function(*): Promise<T | never>}
  */
 export const login = credentials => dispatch =>
-    // gọi api login và sau đó gởi action login
+    // gọi api login và truyền login info, nếu sucess thì lưu vào localstorage và dispatch userloggedin
     api.user.login(credentials)
-        .then( user => dispatch(userLoggedIn(user)));
+        .then( user => {
+            localStorage.bookStoreJWT = user.token;
+            dispatch(userLoggedIn(user))
+        });

@@ -9,6 +9,7 @@ import 'semantic-ui-css/semantic.min.css';
 import App from './App';
 import rootReducer from './reducers/rootReducer';
 import * as serviceWorker from './serviceWorker';
+import {userLoggedIn} from "./actions/auth";
 
 /**
  * Redux Store
@@ -18,6 +19,14 @@ const store = createStore(
     rootReducer,
     composeWithDevTools(applyMiddleware(thunk))
 );
+
+// nếu isset JWT login thì dispatch action userLoggedIn cho store biết
+if (localStorage.bookStoreJWT) {
+    const user = {
+        token: localStorage.bookStoreJWT
+    };
+    store.dispatch(userLoggedIn(user));
+}
 
 ReactDOM.render(
     <BrowserRouter>
