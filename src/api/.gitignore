@@ -116,3 +116,6 @@ modules.xml
 # End of https://www.gitignore.io/api/intellij+all
 
 /src/constants/configs-dev.js
+
+
+.env

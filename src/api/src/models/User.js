@@ -25,10 +25,7 @@ const schema = new mongoose.Schema(
  * Valid password
  */
 schema.methods.isValidPassword = function(password) {
-    return bcrypt.compareSync(password, this.passwordHash, (err, isMatch) => {
-        if (err) console.log(err);
-        console.log(isMatch);
-    });
+    return bcrypt.compareSync(password, this.passwordHash);
 };
 
 /**
@@ -39,7 +36,7 @@ schema.methods.isValidPassword = function(password) {
 schema.methods.generateJWT = function(){
     return jwt.sign({
         email: this.email,
-    }, 'secretkey')
+    }, process.env.JWT_SECRET)
 };
 
 /**

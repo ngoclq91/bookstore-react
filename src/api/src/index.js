@@ -2,8 +2,10 @@ import express from 'express';
 import path from 'path';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
-import configs from './constants/configs-dev';
+import dotenv from 'dotenv';
 import auth from './routes/auth';
+
+dotenv.config();
 
 const app = express();
 
@@ -15,7 +17,7 @@ const mongooseOptions = {
     useCreateIndex: true
 };
 
-mongoose.connect(configs.MONGO_URI, mongooseOptions).then(
+mongoose.connect(process.env.MONGODB_URL, mongooseOptions).then(
     () => console.log('MongoDB Connected'),
     err => console.log(err)
 );
