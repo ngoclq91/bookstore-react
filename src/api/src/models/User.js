@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 /**
  * User Model
@@ -23,8 +24,34 @@ const schema = new mongoose.Schema(
 /**
  * Valid password
  */
-schema.method('isValidPassword', async (password) => {
-    return await bcrypt.compareSync(password, this.passwordHash);
-});
+schema.methods.isValidPassword = function(password) {
+    return bcrypt.compareSync(password, this.passwordHash, (err, isMatch) => {
+        if (err) console.log(err);
+        console.log(isMatch);
+    });
+};
+
+/**
+ * Generate JSON WEB Token
+ * 
+ * @returns {*}
+ */
+schema.methods.generateJWT = function(){
+    return jwt.sign({
+        email: this.email,
+    }, 'secretkey')
+};
+
+/**
+ * Result authentication to JSON
+ * 
+ * @returns {{email: *, token: *}}
+ */
+schema.methods.toAuthJSON = function() {
+    return {
+        email: this.email, 
+        token: this.generateJWT()
+    }
+};
 
 export default mongoose.model("User", schema);

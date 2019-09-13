@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
             if (user && user.isValidPassword(credentials.password)) {
                 res.json({
                     success: true,
-                    user: { email: credentials.email }
+                    user: { user: user.toAuthJSON() }
                 })
             } else {
                 res.status(400).json({
