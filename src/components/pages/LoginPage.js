@@ -16,9 +16,9 @@ class LoginPage extends React.Component {
      * @param data
      */
     submit = (data) => 
-        // gởi data đến login props và sau đó redirect to root page
+        // gởi data đến login props và sau đó redirect to dashboard page
         this.props.login(data)
-            .then( () => this.props.history.push('/'));
+            .then( () => this.props.history.push('/dashboard'));
     
     render() {
         return (
