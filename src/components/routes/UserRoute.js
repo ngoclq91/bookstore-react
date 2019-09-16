@@ -35,7 +35,7 @@ const UserRoute = ({ isAuthenticated, component: Component, ...rest }) => (
  * @type {{component: shim, isAuthenticated: shim}}
  */
 UserRoute.propTypes = {
-    component: PropTypes.func.isRequired,
+    component: PropTypes.object.isRequired,
     isAuthenticated: PropTypes.bool.isRequired
 };
 
