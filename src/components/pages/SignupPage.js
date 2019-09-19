@@ -1,5 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import SignupForm from '../forms/SignupForm';
+import { signup } from '../../actions/users';
 
 /**
  * SignupPage Component
@@ -15,7 +18,9 @@ class SignupPage extends React.Component {
      * @param data Dữ liệu nhập vào từ input form ở signupForm Component
      */
     onSubmit = (data) => {
-        console.log(data);
+        this.props.signup(data)
+            .then( () =>
+                this.props.history.push('/dashboard'));
     };
     
     render() {
@@ -28,4 +33,16 @@ class SignupPage extends React.Component {
     }
 }
 
-export default SignupPage;
+/**
+ * Define đầu vào của SignupPage Component
+ * 
+ * @type {{history: shim, signup: shim}}
+ */
+SignupPage.propTypes = {
+    history: PropTypes.shape({
+        push: PropTypes.func.isRequired
+    }).isRequired,
+    signup: PropTypes.func.isRequired
+};
+
+export default connect(null, { signup })(SignupPage);
