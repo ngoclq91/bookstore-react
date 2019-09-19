@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Form, Button } from "semantic-ui-react";
 import Validator from "validator";
 import InlineError from "../messages/InlineError";
@@ -35,14 +36,15 @@ class SignupForm extends React.Component {
     /**
      * Login Form submit handle
      */
-    onSubmit = () => {
+    onSubmit = (e) => {
+        e.preventDefault();
         const errors = this.onValidate(this.state.data);
         this.setState({errors});
         
         // not error then submit form
         if (Object.keys(errors).length === 0) {
             this.setState({loading: true});
-            console.log(this.state.data);
+            this.props.submit(this.state.data);
         }
     };
 
@@ -139,6 +141,15 @@ class SignupForm extends React.Component {
         )
     }
 }
+
+/**
+ * Define đầu vào của SingupForm Component
+ * 
+ * @type {{onSubmit: shim}}
+ */
+SignupForm.propTypes = {
+    submit: PropTypes.func.isRequired
+};
 
 export default SignupForm;
 

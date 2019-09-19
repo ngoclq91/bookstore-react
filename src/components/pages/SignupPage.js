@@ -12,9 +12,10 @@ class SignupPage extends React.Component {
     /**
      * Handle submit Form in Signup Page
      * 
+     * @param data Dữ liệu nhập vào từ input form ở signupForm Component
      */
-    onSubmit = () => {
-        console.log('clicked Submit button');
+    onSubmit = (data) => {
+        console.log(data);
     };
     
     render() {
