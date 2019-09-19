@@ -45,6 +45,20 @@ class SignupForm extends React.Component {
             console.log(this.state.data);
         }
     };
+
+    /**
+     * Handle cancel button
+     */
+    onCancel = () => {
+        this.setState({
+            data: {
+                email: '',
+                password: '',
+                cfPassword: ''
+            },
+            errors: {}
+        });
+    };
     
     /**
      * Handle validate form
@@ -62,8 +76,9 @@ class SignupForm extends React.Component {
         
         // Check empty field input cfPassword
         if (!data.cfPassword) errors.cfPassword = "Can't be blank";
-        
-        // @todo: check match password
+
+        // check match password
+        if (data.password !== data.cfPassword) errors.password = "Not match password";
         
         return errors;
     };
@@ -72,7 +87,7 @@ class SignupForm extends React.Component {
         const { data, errors, loading } = this.state;
         
         return (
-            <Form onSubmit={this.onSubmit} loading={loading}>
+            <Form loading={loading}>
                 {/* START email field */}
                 <Form.Field required error={!!errors.email}>
                     <label htmlFor="email">Email</label>
@@ -118,8 +133,8 @@ class SignupForm extends React.Component {
                 </Form.Field>
                 {/* END confirm password field */}
                 
-                <Button>Cancel</Button>
-                <Button primary>Sign Up</Button>
+                <Button onClick={this.onCancel}>Cancel</Button>
+                <Button primary onClick={this.onSubmit}>Sign Up</Button>
             </Form>
         )
     }
