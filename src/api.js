@@ -24,8 +24,8 @@ export default {
          * @param data 入力情報
          * @returns {Promise<React.ReactNode | ((component: React.ReactType<FeedUserProps>, props: FeedUserProps, children?: (React.ReactNode | React.ReactNodeArray)) => (React.ReactElement<any> | null)) | FeedUserProps | default.user | {login, signup} | Function | Login | never>}
          */
-        signup: (data) =>
+        signup: (data) => 
             axios.post('/api/users', {data})
-                .then(res => res.data.user)
+                .then( res => res.data)
     }
 }

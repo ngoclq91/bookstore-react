@@ -44,7 +44,11 @@ class SignupForm extends React.Component {
         // not error then submit form
         if (Object.keys(errors).length === 0) {
             this.setState({loading: true});
-            this.props.submit(this.state.data);
+            this.props.submit(this.state.data)
+                .catch( err => this.setState({
+                    errors: err.response.data.errors,
+                    loading: false
+                }));
         }
     };
 
@@ -143,7 +147,7 @@ class SignupForm extends React.Component {
 }
 
 /**
- * Define đầu vào của SingupForm Component
+ * Define đầu vào của SignupForm Component
  * 
  * @type {{onSubmit: shim}}
  */
